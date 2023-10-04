@@ -1,0 +1,26 @@
+namespace: sample
+sample:
+  defines: runnable
+  metadata:
+    name: sample
+    description: Sample Java Application
+    icon: https://emojiapi.dev/api/v1/robot.svg
+  containers:
+    sample:
+      build: .
+  services:
+    sample-8080:
+      container: sample
+      port: 8080
+      host-port: 8080
+      publish: false
+      protocol: TCP
+  variables:
+    spring-application-name:
+      env: SPRING_APPLICATION_NAME
+      type: string
+      value: sample
+    spring-profiles-active:
+      env: SPRING_PROFILES_ACTIVE
+      type: string
+      value: '!!!SETME!!!'
