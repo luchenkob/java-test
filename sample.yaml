@@ -1,0 +1,35 @@
+namespace: sample
+sample:
+  defines: runnable
+  metadata:
+    name: sample
+    description: A sample Java application using Spring Boot
+    icon: https://emojiapi.dev/api/v1/robot.svg
+  containers:
+    sample:
+      build: .
+      image: env-1988.registry.local/sample:main-53eedd9
+  services:
+    spring-boot:
+      container: sample
+      port: <- $server-port
+      host-port: <- $server-port
+      publish: false
+      protocol: TCP
+      description: The port where the Spring Boot server is running
+  variables:
+    spring-profiles-active:
+      env: SPRING_PROFILES_ACTIVE
+      type: string
+      description: The active Spring profile
+      value: '!!!SETME!!!'
+    java.version:
+      env: java.version
+      type: string
+      description: Java version
+      value: '1.8'
+    server-port:
+      env: SERVER_PORT
+      type: string
+      description: The port where the Spring Boot server should run
+      value: '8080'
